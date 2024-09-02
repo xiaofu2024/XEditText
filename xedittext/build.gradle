@@ -26,17 +26,17 @@ dependencies {
     compileOnly 'com.android.support:appcompat-v7:28.0.0'
 }
 
-
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.github.xiaofu2024'
-                artifactId = 'xedittext'
-                version = '1.0.5'
-            }
-        }
-    }
-}
+//
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            // Creates a Maven publication called "release".
+//            release(MavenPublication) {
+//                from components.release
+//                groupId = 'com.github.xiaofu2024'
+//                artifactId = 'xedittext'
+//                version = '1.0.5'
+//            }
+//        }
+//    }
+//}
