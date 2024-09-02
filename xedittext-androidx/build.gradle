@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'maven-publish'
 
 def VERSION_NAME = "2.3.0"
 
@@ -26,12 +28,32 @@ dependencies {
     compileOnly 'androidx.appcompat:appcompat:1.2.0'
 }
 
-apply plugin: 'com.novoda.bintray-release'
-publish {
-    userOrg = 'woxingxiao'
-    groupId = 'com.xw.repo'
-    artifactId = 'xedittext-androidx'
-    publishVersion = VERSION_NAME
-    desc = 'A useful Android custom edittext widget.'
-    website = 'https://github.com/woxingxiao/XEditText'
+
+allprojects {
+    version = "1.1"
+    group = 'com.github.QiSDK'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    sourceCompatibility = 1.8 // java 8
+    targetCompatibility = 1.8
+
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId project.group
+                artifactId project.name
+                version project.version
+                from components.java
+            }
+        }
+    }
 }
